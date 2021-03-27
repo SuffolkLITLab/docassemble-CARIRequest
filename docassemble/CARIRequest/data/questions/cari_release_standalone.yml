@@ -1,0 +1,9 @@
+---
+include:
+  - cari_release.yml
+---
+mandatory: True
+code: |
+  al_intro_screen
+  interview_order_cari
+  download_cari

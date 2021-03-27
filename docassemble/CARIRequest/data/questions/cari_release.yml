@@ -1,0 +1,114 @@
+---
+include:
+  - docassemble.AssemblyLine:al_package.yml
+  - docassemble.MassAccess:massaccess.yml  
+---
+metadata:
+  title: Court Activity Record Information and Warrant Management System Release Form
+  short title: CJP 34
+---
+code: |
+  allowed_courts=['Probate and Family Court']
+---
+comment: |
+  This block controls the interview order
+id: interview_order
+code: |
+  users[0].name.first
+  case_name
+  docket_number 
+  trial_court
+  cari_reason
+  date_of_birth
+  last_4_of_social
+  mothers_maiden_name
+  other_names_or_alias
+  
+  interview_order_cari = True
+---
+code: |
+  interview_short_title = "Complete a Court Activity Record Information Release"
+---
+# mandatory: True
+event: download_cari
+question: |
+  Your document is ready.
+subquestion: |
+  Thank you for using this interview.
+buttons:
+  - Exit: exit
+  - Restart: restart
+---
+objects:
+  - cari_attachment: ALDocument.using(filename="cari", title="Court Activity Record Information Release", has_addendum=False)
+---
+attachment:
+  - name: Court Activity Record Information and Warrant Management System Release Form
+    variable name: cari_attachment[i]
+    filename: Court_Activity_Record_Information_and_Warrant_Management_System_Release_Form
+    pdf template file: CJP_34_Docassemble_project.pdf
+    fields: 
+      "case_name": ${ case_name }
+      "docket_number": ${ docket_number } 
+      "court_division": ${ trial_court.division }
+      "proceeding_is_adoption": ${ cari_reason == 'adoption' }
+      "proceeding_is_name_change_petition": ${ cari_reason == 'name_change' }
+      "proceeding_is_guardianship_of_incapacitated_person": ${ cari_reason =='guardianship' }
+      "proceeding_is_guardianship_of_minor": ${ cari_reason == 'guardianship_of_minor' }
+      "proceeding_is_other": ${ cari_reason == 'other' }
+      "current_name": ${ users }
+      "date_of_birth": ${ date_of_birth }
+      "last_4_of_social": ${ last_4_of_social }
+      "mothers_maiden_name": ${ mothers_maiden_name }
+      "other_names_or_alias": ${ other_names_or_alias }
+---
+question: |
+  What is the case name?
+fields:
+  - 'Case Name': case_name
+    input type: text
+---
+question: |
+  What is your current name?
+fields:
+  - 'Current Name': current_name
+---
+question: |
+  What is your date of birth?
+fields:
+  - 'Date of Birth': date_of_birth
+    datatype: date
+---
+question: |
+  What is the docket number of this proceeding?
+fields:
+  - 'Docket Number': docket_number
+---
+question: |
+  What are the last four digits of your social security number?
+fields:
+  - 'Last four social': last_4_of_social
+---
+question: |
+  What is your mother's maiden name?
+fields:
+  - "Mother's Maiden Name": mothers_maiden_name
+    input type: text
+---
+question: |
+  Have you used any other names or alias? If yes, please write them down.
+fields:
+  - 'Other names or alias': other_names_or_alias
+    input type: area
+---
+question: |
+  Why do you need a CARI form?
+fields:
+  - no label: cari_reason
+    datatype: radio
+    choices:
+      - Adoption: adoption
+      - Guardianship of Incapacitated Person: guardianship
+      - Guardianship of Minor: guardianship_of_minor
+      - Name change: name_change
+      - Other: other
