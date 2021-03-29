@@ -19,7 +19,7 @@ code: |
   docket_number 
   trial_court
   cari_reason
-  date_of_birth
+  users[0].birthdate
   last_4_of_social
   mothers_maiden_name
   other_names_or_alias
@@ -28,6 +28,9 @@ code: |
 ---
 code: |
   interview_short_title = "Complete a Court Activity Record Information Release"
+---
+objects:
+  - users: ALPeopleList.using(ask_number=True, target_number=1)
 ---
 # mandatory: True
 event: download_cari
@@ -48,19 +51,19 @@ attachment:
     filename: Court_Activity_Record_Information_and_Warrant_Management_System_Release_Form
     pdf template file: CJP_34_Docassemble_project.pdf
     fields: 
-      "case_name": ${ case_name }
-      "docket_number": ${ docket_number } 
-      "court_division": ${ trial_court.division }
-      "proceeding_is_adoption": ${ cari_reason == 'adoption' }
-      "proceeding_is_name_change_petition": ${ cari_reason == 'name_change' }
-      "proceeding_is_guardianship_of_incapacitated_person": ${ cari_reason =='guardianship' }
-      "proceeding_is_guardianship_of_minor": ${ cari_reason == 'guardianship_of_minor' }
-      "proceeding_is_other": ${ cari_reason == 'other' }
-      "current_name": ${ users }
-      "date_of_birth": ${ date_of_birth }
-      "last_4_of_social": ${ last_4_of_social }
-      "mothers_maiden_name": ${ mothers_maiden_name }
-      "other_names_or_alias": ${ other_names_or_alias }
+      - "case_name": ${ case_name }
+      - "docket_number": ${ docket_number } 
+      - "court_division": ${ trial_court.division }
+      - "proceeding_is_adoption": ${ cari_reason == 'adoption' }
+      - "proceeding_is_name_change_petition": ${ cari_reason == 'name_change' }
+      - "proceeding_is_guardianship_of_incapacitated_person": ${ cari_reason =='guardianship' }
+      - "proceeding_is_guardianship_of_minor": ${ cari_reason == 'guardianship_of_minor' }
+      - "proceeding_is_other": ${ cari_reason == 'other' }
+      - "current_name": ${ users }
+      - "date_of_birth": ${ users[0].birthdate }
+      - "last_4_of_social": ${ last_4_of_social }
+      - "mothers_maiden_name": ${ mothers_maiden_name }
+      - "other_names_or_alias": ${ other_names_or_alias }
 ---
 question: |
   What is the case name?
@@ -76,8 +79,8 @@ fields:
 question: |
   What is your date of birth?
 fields:
-  - 'Date of Birth': date_of_birth
-    datatype: date
+  - 'Date of Birth': users[0].birthdate
+    datatype: BirthDate
 ---
 question: |
   What is the docket number of this proceeding?
@@ -88,12 +91,12 @@ question: |
   What are the last four digits of your social security number?
 fields:
   - 'Last four social': last_4_of_social
+    maxlength: 4
 ---
 question: |
   What is your mother's maiden name?
 fields:
   - "Mother's Maiden Name": mothers_maiden_name
-    input type: text
 ---
 question: |
   Have you used any other names or alias? If yes, please write them down.
