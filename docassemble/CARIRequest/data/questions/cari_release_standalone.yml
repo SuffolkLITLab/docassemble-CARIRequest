@@ -7,3 +7,9 @@ code: |
   al_intro_screen
   interview_order_cari
   download_cari
+---
+code: |
+  cari_attachment.enabled = True
+---
+objects:
+  - al_user_bundle: ALDocumentBundle.using(elements=[cari_attachment], filename="CARI.pdf")

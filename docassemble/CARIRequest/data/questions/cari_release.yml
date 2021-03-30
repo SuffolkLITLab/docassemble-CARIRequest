@@ -37,10 +37,9 @@ event: download_cari
 question: |
   Your document is ready.
 subquestion: |
-  Thank you for using this interview.
-buttons:
-  - Exit: exit
-  - Restart: restart
+  ${ al_user_bundle.download_list_html() }
+
+  ${ al_user_bundle.send_button_html() }
 ---
 objects:
   - cari_attachment: ALDocument.using(filename="cari", title="Court Activity Record Information Release", has_addendum=False)
@@ -88,10 +87,18 @@ fields:
   - 'Docket Number': docket_number
 ---
 question: |
-  What are the last four digits of your social security number?
+  What are the last four digits of your Social Security number?
 fields:
-  - 'Last four social': last_4_of_social
+  - no label: last_4_of_social
+    validate: ssn_is_numeric
     maxlength: 4
+    minlength: 4
+---
+code: |
+  def ssn_is_numeric(last_4:str)->bool:
+    if not last_4.isnumeric():
+      validation_error('You must enter numbers')
+    return True      
 ---
 question: |
   What is your mother's maiden name?
