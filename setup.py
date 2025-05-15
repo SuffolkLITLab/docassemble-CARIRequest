@@ -43,7 +43,7 @@ def find_package_data(where='.', package='', exclude=standard_exclude, exclude_d
     return out
 
 setup(name='docassemble.CARIRequest',
-      version='0.0.3',
+      version='1.0.0',
       description=('Court Activity Request for Information'),
       long_description='# docassemble.CARIRequest\r\n\r\nCourt Activity Request for Information\r\n\r\n## Author\r\n\r\nQuinten Steenhuis, admin@admin.com\r\n\r\n',
       long_description_content_type='text/markdown',
