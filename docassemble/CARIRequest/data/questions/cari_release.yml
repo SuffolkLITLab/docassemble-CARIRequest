@@ -3,10 +3,6 @@ include:
   - docassemble.AssemblyLine:al_package.yml
   - docassemble.MassAccess:massaccess.yml  
 ---
-metadata:
-  title: Court Activity Record Information and Warrant Management System Release Form
-  short title: CJP 34
----
 code: |
   allowed_courts=['Probate and Family Court']
 ---
