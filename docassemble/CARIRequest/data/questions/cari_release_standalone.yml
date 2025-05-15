@@ -2,6 +2,53 @@
 include:
   - cari_release.yml
 ---
+metadata:
+  title: Court Activity Record Information (CARI) Request Form
+  short title: CARI Request
+  description: |
+    This interview will help you complete a Court Activity Record Information (CARI) request form.
+    With your permission, the court uses this information to look at your court record to confirm if you have ever been arrested,
+    convicted of a crime, or ordered to stay away from someone under a restraining order.
+
+    You may need to give a copy of this form to the court before you ask to be made a:
+
+    * Guardian ad litem
+    * Conservator
+    * Guardian, or
+    * Adoptive parent
+
+    Or before you can change your name.
+
+    You may need to write your Social Security number on this form before you can file it with the court.
+  can_I_use_this_form: |
+    Anybody who needs to give the court information about their
+    arrest, criminal record, or restraining order history can use this form.
+  before_you_start: |
+    Before you start, you need to know:
+
+    * The name of the court you will file this case in
+    * The **kind** of case you are filing in. For example: a name change or guardianship case.
+  LIST_topics:
+    - FA-00-00-00-00
+    - CR-00-00-00-00
+    - ES-03-00-00-00
+    - FA-01-00-00-00
+    - FA-11-00-00-00
+  authors:
+    - Quinten Steenhuis
+  allowed_courts:
+    - "Probate and Family Court"
+  typical_role: "plaintiff"
+  form_titles:
+    - Court Activity Record Information and Warrant Management System Release Form
+  form_numbers:
+    - CJP-34
+  update_notes: |
+    2025-5-15 Updated with the 2024 CJP-34 form
+  jurisdiction: NAM-US-US+MA
+  help_page_url: https://www.mass.gov/info-details/probate-and-family-court-court-activity-record-information-and-warrant-management-system-release-request-form-cjp-34
+  help_page_title: CARI Request Form
+---
 mandatory: True
 code: |
   al_intro_screen
