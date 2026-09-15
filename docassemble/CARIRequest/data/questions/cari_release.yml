@@ -30,6 +30,7 @@ objects:
 ---
 # mandatory: True
 event: download_cari
+id: "your document is ready"
 question: |
   Your document is ready.
 subquestion: |
@@ -60,28 +61,33 @@ attachment:
       - "mothers_maiden_name": ${ mothers_maiden_name }
       - "other_names_or_alias": ${ other_names_or_alias }
 ---
+id: "what is the case name"
 question: |
   What is the case name?
 fields:
   - 'Case Name': case_name
     input type: text
 ---
+id: "what is your current name"
 question: |
   What is your current name?
 fields:
   - 'Current Name': current_name
 ---
+id: "what is your date of birth"
 question: |
   What is your date of birth?
 fields:
   - 'Date of Birth': users[0].birthdate
     datatype: BirthDate
 ---
+id: "what is the docket number of this proceeding"
 question: |
   What is the docket number of this proceeding?
 fields:
   - 'Docket Number': docket_number
 ---
+id: "what are the last four digits of your social security number"
 question: |
   What are the last four digits of your Social Security number?
 fields:
@@ -96,17 +102,20 @@ code: |
       validation_error('You must enter numbers')
     return True      
 ---
+id: "what is your mothers maiden name"
 question: |
   What is your mother's maiden name?
 fields:
   - "Mother's Maiden Name": mothers_maiden_name
 ---
+id: "have you used any other names or alias if yes please write them down"
 question: |
   Have you used any other names or alias? If yes, please write them down.
 fields:
   - 'Other names or alias': other_names_or_alias
     input type: area
 ---
+id: "why do you need a cari form"
 question: |
   Why do you need a CARI form?
 fields:
