@@ -59,4 +59,4 @@ code: |
   cari_attachment.enabled = True
 ---
 objects:
-  - al_user_bundle: ALDocumentBundle.using(elements=[cari_attachment], filename="CARI.pdf")
+  - al_user_bundle: ALDocumentBundle.using(title="CARI Request Form", elements=[cari_attachment], filename="CARI.pdf")
